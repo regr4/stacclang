@@ -25,6 +25,9 @@ def getArity(op):
 	elif op == "d": return 0 # due to implementation-specific details, duplicating the top of the stack doesn't need any arguments
 	elif op == "l": return 0
 
+	elif op == "x": return 0
+	elif op == "v": return 0
+
 	elif op == "p": return 1
 	elif op == "t": return 1
 	elif op == "c": return 1
@@ -86,6 +89,11 @@ def apply(op):
 			reg = args[0]
 		elif op == "l":
 			stack.append(reg)
+
+		elif op == "x":
+			stack.clear()
+		elif op == "v":
+			stack.append(len(stack))
 
 		elif op == "_": stack.append(-args[0])
 		elif op == "!": stack.append(1 if evalAsBool(args[0]) else 0)
